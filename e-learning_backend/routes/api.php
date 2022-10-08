@@ -20,6 +20,7 @@ Route::group(["prefix"=> "v0.1"], function(){
     Route::get("/getUsers/{type}", [AdminController::class, "getUsers"])->name("get-users");
     Route::post("/enrollStudent", [InstructorController::class, "enrollStudent"])->name("enroll-student");
     Route::post("/addAssignment", [InstructorController::class, "addAssignment"])->name("add-assignment");
+    Route::post("/addAnouncement", [InstructorController::class, "addAnouncement"])->name("add-anouncement");
     Route::get("/getInstructorCourses", [InstructorController::class, "getCourses"])->name("get-courses");
     });
 });
