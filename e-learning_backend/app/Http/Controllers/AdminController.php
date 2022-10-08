@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Instructor;
 use App\Models\User;
+use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
@@ -52,6 +53,11 @@ class AdminController extends Controller
      // function to add Courses
      function addCourse(Request $request){
       $name = $request->name;
-      
+      $course = Course::create([
+        'name'=>$name
+      ]);
+      return response()->json([
+        'course'=>$course,
+      ]);
      }
 }
