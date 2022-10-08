@@ -60,4 +60,12 @@ class AdminController extends Controller
         'course'=>$course,
       ]);
      }
+
+     // function to get all courses
+     function getCourses(){
+       $courses = Course::get();
+       return response()->json([
+         'courses'=>$courses,
+       ]);
+     }
 }
