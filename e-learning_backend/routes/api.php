@@ -33,6 +33,7 @@ Route::group(["prefix"=> "v0.1"], function(){
       Route::get("/getAnouncements/{course_name}", [InstructorController::class, "getAnouncements"])->name("get-anouncements");
       Route::post("/submitAssignment", [StudentController::class, "submitAssignment"])->name("submit-assignment");
       Route::get("/getSubmitted/{course_name}", [StudentController::class, "getSubmitted"])->name("get-submissions");
+      Route::get("/getAllSubmissions/", [StudentController::class, "getAllSubmissions"])->name("get-all-submissions");
     });
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
