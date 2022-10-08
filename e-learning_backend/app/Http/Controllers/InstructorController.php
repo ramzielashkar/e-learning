@@ -41,4 +41,12 @@ function addAssignment(Request $request){
     'course'=>$course
   ]);
 }
+
+// function to add anouncements
+function addAnouncement(Request $request){
+  $course_name = $request->coursename;
+  $anouncement = $request->anouncement;
+  $course = Course::where('name', '=', $course_name)
+  ->push('anouncements', array($anouncement));
+}
 }
