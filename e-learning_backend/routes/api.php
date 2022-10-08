@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\StudentController;
+
 
 Route::group(["prefix"=> "v0.1"], function(){
   Route::group(["middleware" => "auth:api"], function(){
@@ -25,6 +27,12 @@ Route::group(["prefix"=> "v0.1"], function(){
     Route::get("/getAssignments/{course_name}", [InstructorController::class, "getAssignments"])->name("get-assignments");
     Route::get("/getAnouncements/{course_name}", [InstructorController::class, "getAnouncements"])->name("get-anouncements");
 
+    });
+    Route::group(["middleware" => "role.student"], function(){
+      Route::get("/getAssignments/{course_name}", [InstructorController::class, "getAssignments"])->name("get-assignments");
+      Route::get("/getAnouncements/{course_name}", [InstructorController::class, "getAnouncements"])->name("get-anouncements");
+      Route::post("/submitAssignment", [StudentController::class, "submitAssignment"])->name("submit-assignment");
+      Route::get("/getSubmitted/{course_name}", [StudentController::class, "getSubmitted"])->name("get-submissions");
     });
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
