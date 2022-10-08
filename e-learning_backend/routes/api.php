@@ -17,12 +17,13 @@ Route::group(["prefix"=> "v0.1"], function(){
 
   });
   Route::group(["middleware" => "role.instructor"], function(){
+    Route::get("/getUsers/{type}", [AdminController::class, "getUsers"])->name("get-users");
     Route::post("/enrollStudent", [InstructorController::class, "enrollStudent"])->name("enroll-student");
+    Route::post("/addAssignment", [InstructorController::class, "addAssignment"])->name("add-assignment");
     Route::get("/getInstructorCourses", [InstructorController::class, "getCourses"])->name("get-courses");
     });
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
-
   Route::get("/not_found", [AuthController::class, "notFound"])->name("not-found");
 
 });
