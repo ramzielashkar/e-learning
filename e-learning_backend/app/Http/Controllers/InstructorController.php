@@ -26,5 +26,19 @@ function getCourses(){
   ]);
 }
 
-
+// function to create assignments
+function addAssignment(Request $request){
+  $course_name = $request->coursename;
+  $assignment_details = $request->assignment_details;
+  $assignment_name = $request->assignment_name;
+  $assignment = array(
+    'assignment_name'=>$assignment_name,
+    'assignment_details'=>$assignment_details,
+  );
+  $course = Course::where('name', '=', $course_name)
+  ->push('assignments', $assignment);
+  return response()->json([
+    'course'=>$course
+  ]);
+}
 }
