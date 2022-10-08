@@ -22,6 +22,8 @@ Route::group(["prefix"=> "v0.1"], function(){
     Route::post("/addAssignment", [InstructorController::class, "addAssignment"])->name("add-assignment");
     Route::post("/addAnouncement", [InstructorController::class, "addAnouncement"])->name("add-anouncement");
     Route::get("/getInstructorCourses", [InstructorController::class, "getCourses"])->name("get-courses");
+    Route::get("/getAssignments/{course_name}", [InstructorController::class, "getAssignments"])->name("get-assignments");
+
     });
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
