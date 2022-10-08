@@ -11,6 +11,8 @@ Route::group(["prefix"=> "v0.1"], function(){
     Route::post("/addCourse", [AdminController::class, "addCourse"])->name("add-course");
     Route::get("/getUsers/{type}", [AdminController::class, "getUsers"])->name("get-users");
     Route::get("/getCourses", [AdminController::class, "getCourses"])->name("get-courses");
+    Route::post("/assignCourse", [AdminController::class, "assignCourse"])->name("assign-course");
+
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
 
