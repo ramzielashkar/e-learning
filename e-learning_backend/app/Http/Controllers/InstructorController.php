@@ -49,4 +49,12 @@ function addAnouncement(Request $request){
   $course = Course::where('name', '=', $course_name)
   ->push('anouncements', array($anouncement));
 }
+
+// function to get assignments
+function getAssignments($course_name){
+  $assignments = Course::select('assignments')->where('name', '=', $course_name)->get();
+  return response()->json([
+    'assignments'=>$assignments
+  ]);
+}
 }
