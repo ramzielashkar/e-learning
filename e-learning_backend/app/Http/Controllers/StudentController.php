@@ -34,11 +34,23 @@ class StudentController extends Controller
       ->push('submissions', array($submission_details));
     }
 
-    // function to get submissions
+    // function to get submissions by course
     function getSubmitted($course_name){
       $submissions = Course::select('submissions')->where('name', '=', $course_name)->where('submissions.assignment_name', '=', 'assignment 1')->get();
       return response()->json([
         'result'=>$submissions
       ]);
     }
+
+    // function to get all submissions
+
+    function getAllSubmissions(){
+      $user  =  Auth::user();
+      $student_name = $user->name;
+      $student = Student::select('submissions')->where('name','=', $student_name)->get();
+      return response()->json([
+        'result'=>$student
+      ]);
+    }
+
 }
