@@ -76,6 +76,7 @@ class AdminController extends Controller
        ->push('courses', array('coursename'=>$request->coursename));
        $course = array(
          'assigned'=>"true",
+         'instructor'=>$request->instructor,
        );
        Course::where('name', '=', $request->coursename)->update($course);
        return $course;
