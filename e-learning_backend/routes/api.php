@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InstructorController;
 
 Route::group(["prefix"=> "v0.1"], function(){
   Route::group(["middleware" => "auth:api"], function(){
@@ -15,6 +16,9 @@ Route::group(["prefix"=> "v0.1"], function(){
       Route::post("/assignCourse", [AdminController::class, "assignCourse"])->name("assign-course");
 
   });
+  Route::group(["middleware" => "role.instructor"], function(){
+    Route::post("/enrollStudent", [InstructorController::class, "enrollStudent"])->name("enroll-student");
+    });
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
 
