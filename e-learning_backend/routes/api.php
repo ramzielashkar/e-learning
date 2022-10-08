@@ -18,6 +18,7 @@ Route::group(["prefix"=> "v0.1"], function(){
   });
   Route::group(["middleware" => "role.instructor"], function(){
     Route::post("/enrollStudent", [InstructorController::class, "enrollStudent"])->name("enroll-student");
+    Route::get("/getInstructorCourses", [InstructorController::class, "getCourses"])->name("get-courses");
     });
 });
   Route::post("/login", [AuthController::class, "login"])->name("login-user");
