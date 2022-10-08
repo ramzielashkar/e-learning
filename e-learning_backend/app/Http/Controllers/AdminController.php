@@ -54,7 +54,8 @@ class AdminController extends Controller
      function addCourse(Request $request){
       $name = $request->name;
       $course = Course::create([
-        'name'=>$name
+        'name'=>$name,
+        'assigned'=>'false'
       ]);
       return response()->json([
         'course'=>$course,
@@ -73,5 +74,10 @@ class AdminController extends Controller
      function assignCourse(Request $request){
        Instructor::where('name', '=', $request->instructor)
        ->push('courses', array('coursename'=>$request->coursename));
+       $course = array(
+         'assigned'=>"true",
+       );
+       Course::where('name', '=', $request->coursename)->update($course);
+       return $course;
      }
 }
