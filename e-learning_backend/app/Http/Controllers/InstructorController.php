@@ -57,4 +57,12 @@ function getAssignments($course_name){
     'assignments'=>$assignments
   ]);
 }
+
+// function to get anouncements
+function getAnouncements($course_name){
+  $anouncements = Course::select('anouncements')->where('name', '=', $course_name)->get();
+  return response()->json([
+    'anouncements'=>$anouncements
+  ]);
+}
 }
