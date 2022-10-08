@@ -68,4 +68,10 @@ class AdminController extends Controller
          'courses'=>$courses,
        ]);
      }
+
+     // function to assign courses to instructors
+     function assignCourse(Request $request){
+       Instructor::where('name', '=', $request->instructor)
+       ->push('courses', array('coursename'=>$request->coursename));
+     }
 }
