@@ -20,11 +20,11 @@ class InstructorController extends Controller
 // function to get instructor assigned courses
 function getCourses(){
   $instructor = Auth::user();
-  $courses = Instructor::select('courses')->where('name','=', $instructor->name)->get();
-
+  $courses = Course::where('instructor','=', $instructor->name)->get();
   return response()->json([
     'courses'=>$courses
   ]);
 }
+
 
 }
