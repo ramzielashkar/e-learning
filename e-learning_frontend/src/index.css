@@ -1,7 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #F4F5F9;
+  font-family: -apple-system, BlinkMacSystemFont,  'Roboto',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -11,3 +13,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* common styles */
+.flex{
+  display: flex;
+}
+.column {
+  flex-direction: column;
+}
+.hidden{
+  display: none;
+}
+
+/* Top Bar Styling Start */
+.top-bar{
+  background-color: white;
+  padding: 0 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile{
+  height: inherit;
+  align-items: center;
+  cursor: pointer;
+}
+.user-img{
+  width: 60px;
+  height: 60px;
+}
+
+.user-img img{
+  border-radius: 50px;
+}
+.title{
+  color: #704EB1;
+}
+.user-name{
+  margin-left: 1rem;
+}
+/* Top Bar Styling End */
