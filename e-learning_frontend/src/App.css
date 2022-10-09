@@ -89,6 +89,10 @@ code {
   font-weight: bold;
   font-size: 20px;
 }
+.link {
+  text-decoration: none;
+  color: black;
+}
 /* Side Bar Styling End */
 
 /* Login Section Styling Start  */
@@ -135,3 +139,11 @@ code {
   background-color: #704EB1;
 }
 /* Login Section Styling End  */
+
+
+/* Admin Courses Section Start */
+.section{
+  width: 100%;
+  padding: 2rem 4rem;
+}
+/* Admin Courses Section End */
