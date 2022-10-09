@@ -8,9 +8,11 @@ const Sidebar = () =>{
     <div className='sidebar flex column'>
       <Navitem
       text = {'Courses'}
+      link = {"allcourses"}
       />
       <Navitem
       text = {'Students'}
+      link ={'students'}
       />
       <Navitem
       text = {'Instructors'}
