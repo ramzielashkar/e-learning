@@ -179,5 +179,61 @@ code {
   justify-content: flex-end;
   margin-right: 1rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 /* Admin Courses Section End */
+
+/* Assign Container Section Start */
+.assign-container{
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top:0;
+  align-items: center;
+  justify-content: center;
+}
+.assign-popup{
+  background-color: white;
+  padding: 4rem;
+  border-radius: 20px;
+}
+.course-info{
+  font-size: 20px;
+  font-weight: bold;
+  color:#704EB1;
+  margin-bottom: 2rem;
+}
+.course-info input{
+  margin-top: 1rem;
+  width:300px;
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  font-weight: bold;
+  color:#704EB1;
+  border-radius: 20px;
+}
+.instructor-info{
+  font-size: 20px;
+  font-weight: bold;
+  color:#704EB1;
+}
+.instructor-info select{
+  margin-top: 1rem;
+  width:340px;
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  font-weight: bold;
+  color:#704EB1;
+  border-radius: 20px;
+}
+.buttons{
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
+.btn-assign{
+  color: white;
+  background-color: #704EB1;
+  width:100px!important;
+  margin-left: 1rem;
+}
