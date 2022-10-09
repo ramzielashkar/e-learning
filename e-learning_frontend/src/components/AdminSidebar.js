@@ -16,6 +16,7 @@ const Sidebar = () =>{
       />
       <Navitem
       text = {'Instructors'}
+      link ={'instructors'}
       />
 
     </div>
