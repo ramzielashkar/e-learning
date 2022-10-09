@@ -183,7 +183,7 @@ code {
 }
 /* Admin Courses Section End */
 
-/* Assign Container Section Start */
+/* Assign Course Section Start */
 .assign-container{
   background-color: rgba(0,0,0,0.5);
   width: 100%;
@@ -237,3 +237,24 @@ code {
   width:100px!important;
   margin-left: 1rem;
 }
+
+/* Add Course Section Start */
+.add-course-btn{
+  justify-content: flex-end;
+}
+.course-image{
+  width: 100%;
+  height:200px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.select-img{
+  font-size: 15px;
+  font-weight: bold;
+  color:white;
+  background-color: #704EB1;
+  border: 1px solid #704EB1;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+/* Add Course Section End */
