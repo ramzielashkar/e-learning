@@ -1,20 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Login component
 const Login = ({onAdd}) =>{
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
 
+  // function to submit the form
   const onSubmit = (e) => {
   e.preventDefault();
   if (!email) {
     console.log('error');
     return;
   }
-    //console.log(email, password);
   onAdd({ email, password });
-
+  setAuthenticated(true);
   setEmail("");
   setPassword("");
 };
+
+if(authenticated){
+  navigate('/admin');
+}
 
   return(
     <section className = 'login-section flex column'>
