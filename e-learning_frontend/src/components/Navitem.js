@@ -4,9 +4,9 @@ import { FaUserTie } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 
 
-const Navitem = ({text}) =>{
+const Navitem = ({text, link}) =>{
   return (
-    <Link to = {"allcourses"} className='link'>
+    <Link to = {link} className='link'>
       <div className='nav-item flex'>
         <p>{text}</p>
       </div>
