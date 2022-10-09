@@ -146,4 +146,38 @@ code {
   width: 100%;
   padding: 2rem 4rem;
 }
+
+.allcourses{
+  flex-wrap:wrap;
+  justify-content: space-evenly;
+}
+
+.course-card{
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px lightgrey;
+  margin-bottom: 2rem;
+}
+.course-img{
+  width: 350px;
+  height: 200px;
+  margin-bottom: 1rem;
+}
+.course-name{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  color:#704EB1;
+}
+.course-card p{
+  margin-left: 1rem;
+  color:#704EB1;
+  opacity: 90%;
+}
+
+.assign-course{
+  justify-content: flex-end;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
 /* Admin Courses Section End */
