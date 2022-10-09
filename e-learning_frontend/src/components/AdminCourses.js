@@ -27,6 +27,7 @@ const AdminCourses = () =>{
   return(
     <>
     <section className = 'section flex column'>
+      <h1 className = 'title'>Courses</h1>
       <div className='add-course-btn flex'>
         <Button
         text = {'Add Course'}
@@ -36,16 +37,12 @@ const AdminCourses = () =>{
         }}
         />
       </div>
-      <h1 className = 'title'>Courses</h1>
       <div className = 'allcourses flex'>
         <Course
         onClick = {() => {
           showAssignPopup();
         }}
          />
-
-
-
       </div>
     </section>
     <AssignCourses
