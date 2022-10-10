@@ -272,3 +272,25 @@ code {
   margin-bottom: 2rem;
 }
 /* Students Page Styling End */
+
+/* Assignments Page Styling Start */
+.assignment-card{
+  padding: 1rem;
+  width:350px;
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px lightgrey;
+  margin-bottom: 2rem;
+}
+
+.assignment-info{
+  color:#704EB1;
+  margin-bottom: 1rem;
+}
+.assignment{
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 1px solid #704EB1;
+  padding-bottom:1rem;
+  margin-bottom: 1rem;
+}
+/* Assignments Page Styling End */
