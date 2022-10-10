@@ -7,6 +7,7 @@ const Login = ({onAdd}) =>{
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
+  const [userType, setUserType] = useState('');
 
   // function to submit the form
   const onSubmit = (e) => {
@@ -15,14 +16,21 @@ const Login = ({onAdd}) =>{
     console.log('error');
     return;
   }
-  onAdd({ email, password });
+  const type = onAdd({ email, password });
+  type.then((res)=>{
+    setUserType(res);
+  });
   setAuthenticated(true);
   setEmail("");
   setPassword("");
 };
 
-if(authenticated){
-  navigate('/instructor ');
+if(userType == 'student'){
+  navigate('/student/studentcourses');
+}else if(userType == 'admin'){
+  navigate('/admin/allcourses');
+}else if(userType == 'instructor'){
+  navigate('/instructor/courses');
 }
 
   return(
@@ -42,8 +50,8 @@ if(authenticated){
           <label>Password</label>
           <input
             type="password"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            //pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            //title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
             placeholder="Enter password"
             onChange={(e) => setPassword(e.target.value)}
           />
