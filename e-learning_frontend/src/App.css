@@ -302,4 +302,24 @@ code {
   color: #704EB1;
   outline: none;
 }
+
+.submission-card{
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px lightgrey;
+  margin-bottom: 2rem;
+}
+.submission{
+  margin: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  color:#704EB1;
+}
+
+.submission-info{
+  margin-bottom: 1rem;
+  align-items: center;
+}
+.course-related{
+  font-size: 15px;
+}
 /* Assignments Page Styling End */
