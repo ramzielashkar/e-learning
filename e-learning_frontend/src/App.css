@@ -293,4 +293,13 @@ code {
   padding-bottom:1rem;
   margin-bottom: 1rem;
 }
+
+.assg-details{
+  border-radius: 20px;
+  padding: 1rem;
+  border-color: #704EB1;
+  margin-top: 1rem;
+  color: #704EB1;
+  outline: none;
+}
 /* Assignments Page Styling End */
