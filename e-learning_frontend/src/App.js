@@ -24,9 +24,6 @@ const add = () => {
 
 function App() {
   const [user, setUser] = useState('');
-  useEffect(() => {
-    
-  }, []);
   const showLogin = async (user) => {
     const res = await login(user);
     setUser(res.data.user.name);
