@@ -7,8 +7,10 @@ import Admin from "./components/Admin";
 import AdminCourses from "./components/AdminCourses";
 import Students from "./components/Students";
 import Instructors from "./components/Instructors";
-
-
+import Instructor from "./components/Instructor";
+import InstructorCourses from "./components/InstructorCourses";
+import InstructorAssignments from "./components/InstructorAssignments";
+import InstructorAnnouncements from "./components/InstructorAnnouncements";
 const showLogin = (user) => {
   console.log('email', user.email);
   console.log('password', user.password);
@@ -43,6 +45,21 @@ function App() {
         <Instructors />
       } />
     </Route>
+
+    <Route path="/instructor" element={
+      <Instructor />
+    } >
+      <Route path = 'courses' element={
+        <InstructorCourses />
+      } />
+      <Route path = 'assignments' element={
+        <InstructorAssignments />
+      } />
+      <Route path = 'announcements' element={
+        <InstructorAnnouncements />
+      } />
+    </Route>
+
 
 
     </Routes>
