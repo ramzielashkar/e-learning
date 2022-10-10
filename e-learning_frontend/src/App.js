@@ -11,20 +11,37 @@ import Instructor from "./components/Instructor";
 import InstructorCourses from "./components/InstructorCourses";
 import InstructorAssignments from "./components/InstructorAssignments";
 import InstructorAnnouncements from "./components/InstructorAnnouncements";
-const showLogin = (user) => {
-  console.log('email', user.email);
-  console.log('password', user.password);
+import Student from "./components/Student";
+import StudentCourses from "./components/StudentCourses";
+import Submissions from "./components/Submissions";
+import { useState, useEffect } from "react";
+import {login} from './Hooks/login';
 
-}
+
 const add = () => {
   console.log();
 };
 
 function App() {
+  const [user, setUser] = useState('');
+  useEffect(() => {
+    
+  }, []);
+  const showLogin = async (user) => {
+    const res = await login(user);
+    setUser(res.data.user.name);
+    localStorage.setItem('token',res.data.user.token);
+    console.log(res.data.user.token);
+    const type = res.data.user.type;
+    console.log(type);
+    return type;
+  
+  }
   return (
     <BrowserRouter>
-    <Header /
-    >
+    <Header 
+      name = {user}
+    />
     <Routes>
     <Route path="/" element={
       <div>
@@ -57,6 +74,20 @@ function App() {
       } />
       <Route path = 'announcements' element={
         <InstructorAnnouncements />
+      } />
+    </Route>
+
+    <Route path="/student" element={
+      <Student />
+    } >
+      <Route path = 'studentcourses' element={
+        <StudentCourses />
+      } />
+      <Route path = 'assignments' element={
+        <InstructorAssignments />
+      } />
+      <Route path = 'submissions' element={
+        <Submissions />
       } />
     </Route>
 
