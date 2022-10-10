@@ -22,7 +22,7 @@ const Login = ({onAdd}) =>{
 };
 
 if(authenticated){
-  navigate('/admin');
+  navigate('/instructor ');
 }
 
   return(
