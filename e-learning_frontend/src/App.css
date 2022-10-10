@@ -241,6 +241,7 @@ code {
 /* Add Course Section Start */
 .add-course-btn{
   justify-content: flex-end;
+  margin-bottom: 2rem;
 }
 .course-image{
   width: 100%;
