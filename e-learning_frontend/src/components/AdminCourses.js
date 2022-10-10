@@ -46,6 +46,7 @@ const AdminCourses = () =>{
       </div>
     </section>
     <AssignCourses
+    text = {'Instructor'}
     open = {showAssignCourse}
     coursename = {coursename}
     onClose = {() => {
