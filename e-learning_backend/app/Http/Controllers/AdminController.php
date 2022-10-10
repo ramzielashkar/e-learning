@@ -52,9 +52,18 @@ class AdminController extends Controller
 
      // function to add Courses
      function addCourse(Request $request){
+      $image = $request->image;
       $name = $request->name;
+      $base64Image = explode(";base64,", $image);
+      $explodeImage = explode("image/", $base64Image[0]);
+      $imageType = $explodeImage[1];
+      $image_base64 = base64_decode($base64Image[1]);
+      $imageName = $name.'.'.'png';
+      file_put_contents(public_path().'/'.$imageName, $image_base64);
+
       $course = Course::create([
         'name'=>$name,
+        'image'=>$imageName,
         'assigned'=>'false'
       ]);
       return response()->json([
