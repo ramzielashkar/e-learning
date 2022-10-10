@@ -2,8 +2,21 @@ import Button from './Button';
 import UserCard from './UserCard';
 import { useState, useEffect } from "react";
 import AddStudent from './AddStudent';
+import { getAllStudents } from '../Hooks/getAllStudents';
 
 const Students = () => {
+
+  const token = localStorage.getItem('token');
+  const [students, setStudents] = useState([]);
+  useEffect(() => {
+    const getStudents = async (token) => {
+      const studentsFromServer = await getAllStudents(token);
+      console.log(studentsFromServer.data);
+      setStudents(studentsFromServer.data.users);
+      console.log(students);
+    };
+    getStudents(token);
+  }, []);
   const showAddPopup = () => {
     setShowAddStudent(true);
   };
@@ -27,7 +40,15 @@ const Students = () => {
         />
       </div>
       <div className = 'all-students flex'>
-      <UserCard/>
+      {  students.map((student, index)  => {
+        return(
+          <UserCard
+          name={student.name}
+          email={student.email}
+          />
+        );
+      })}
+     
       </div>
     </section>
     <AddStudent
