@@ -5,7 +5,6 @@ const AddStudent = ({open, onClose, onAdd}) => {
   const [studentname, setStudentName] = useState("Ramzi");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [img, setImg] = useState();
   const onSubmit = (e) => {
   e.preventDefault();
   if (!email) {
@@ -17,10 +16,6 @@ const AddStudent = ({open, onClose, onAdd}) => {
   setEmail("");
   setPassword("");
 };
-  const onImageChange = (e) => {
-    const [file] = e.target.files;
-    setImg(URL.createObjectURL(file));
-  };
   if(!open){
     return null;
   }
@@ -28,14 +23,10 @@ const AddStudent = ({open, onClose, onAdd}) => {
   return(
     <div className='assign-container flex column'>
       <div className='assign-popup flex column'>
-          <div>
-          <label className='select-img' for = 'image'>Select Image</label>
-          <input id='image' type="file" hidden onChange={onImageChange} />
-          <div className='course-image'>
-            <img src={img} alt="" width='100%' height="100%" />
-          </div>
-        </div>
 
+          <div className='course-image'>
+            <img src={require('../assets/default.png')} alt="" width='100%' height="100%" />
+          </div>
         <form className = "login-form flex column" onSubmit={onSubmit}>
           <div className="form-control flex column">
           <div className="form-control flex column">
