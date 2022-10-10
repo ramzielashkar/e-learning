@@ -3,8 +3,19 @@ import AssignCourses from './AssignCourses';
 import AddCourse from './AddCourse';
 import Button from './Button';
 import { useState, useEffect } from "react";
+import { getAllCourses } from '../Hooks/getAllCourses';
 
 const AdminCourses = () =>{
+  const token = localStorage.getItem('token');
+  const [allCourses, setAllCourses] = useState([]);
+  useEffect(() => {
+    const getCourses = async () => {
+      const coursesFromServer = await getAllCourses(token);
+      console.log(coursesFromServer.data.courses);
+      setAllCourses(coursesFromServer.data.courses);
+    };
+    getCourses(token);
+  }, []);
   const showAssignPopup = () => {
     setShowAssignCourse(true);
   };
@@ -38,11 +49,20 @@ const AdminCourses = () =>{
         />
       </div>
       <div className = 'allcourses flex'>
-        <Course
-        onClick = {() => {
-          showAssignPopup();
-        }}
-         />
+        {  allCourses.map((course, index)  => {
+          //console.log(course.name);
+          return (
+            <Course
+            coursename = {course.name}
+            image = {course.image}
+            text = 'Assign'
+            onClick = {() => {
+              showAssignPopup();
+            }}
+             />
+          );
+        })}
+
       </div>
     </section>
     <AssignCourses
