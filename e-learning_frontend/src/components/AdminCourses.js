@@ -16,8 +16,9 @@ const AdminCourses = () =>{
     };
     getCourses(token);
   }, []);
-  const showAssignPopup = () => {
+  const showAssignPopup = (coursename) => {
     setShowAssignCourse(true);
+      setCourseName(coursename);
   };
   const closeAssignPopup = () => {
     setShowAssignCourse(false);
@@ -29,7 +30,7 @@ const AdminCourses = () =>{
     setShowAddCourse(false);
   };
 
-  const [coursename, setCourseName] = useState("Web");
+  const [coursename, setCourseName] = useState("");
   const [instructor, setInstructor] = useState("Ramzi");
   const [image, setImage] = useState("../assets/download.jpeg")
   const [showAssignCourse, setShowAssignCourse] = useState(false);
@@ -57,7 +58,7 @@ const AdminCourses = () =>{
             image = {course.image}
             text = 'Assign'
             onClick = {() => {
-              showAssignPopup();
+              showAssignPopup(course.name);
             }}
              />
           );
