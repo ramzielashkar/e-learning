@@ -19,6 +19,8 @@ const EnrollStudent = ({open, text, coursename, onClose, onAdd}) => {
       const studentsFromServer = await getStudents(token);
       console.log(studentsFromServer);
       setStudents(studentsFromServer.data.users);
+      setStudent(studentsFromServer.data.users['0'].name);
+
     };
     getAllStudents(token);
   }, []);
