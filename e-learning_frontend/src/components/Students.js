@@ -3,16 +3,23 @@ import UserCard from './UserCard';
 import { useState, useEffect } from "react";
 import AddStudent from './AddStudent';
 import { getAllStudents } from '../Hooks/getAllStudents';
-
+import { addUser } from '../Hooks/AddUser';
 const Students = () => {
 
   const token = localStorage.getItem('token');
   const [students, setStudents] = useState([]);
+
+  const addStudent = async (name, email, password) =>{
+    const type = 'student';
+    const res  = await addUser( {name, email, password, type}, token);
+    //console.log(res);
+    setStudents([...students, res.data.user]);
+  }
   useEffect(() => {
     const getStudents = async (token) => {
       const studentsFromServer = await getAllStudents(token);
       setStudents(studentsFromServer.data.users);
-      console.log(students);
+      //console.log(studentsFromServer);
     };
     getStudents(token);
   }, []);
@@ -51,6 +58,7 @@ const Students = () => {
       </div>
     </section>
     <AddStudent
+    onAdd = {addStudent}
     open = {showAddStudent}
     onClose = {() => {
       closeAddPopup();
