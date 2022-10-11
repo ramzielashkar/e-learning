@@ -4,14 +4,12 @@ import { useState, useEffect } from 'react';
 import { assignCourse } from '../Hooks/AssignCourses';
 
 
-const AssignCourses = ({open, text, coursename, onClose}) => {
+const AssignCourses = ({open, text, coursename, onClose, onAdd}) => {
   //const [course, setCourseName] = useState('');
   const [instructor, setInstructor] = useState('');
   const onSubmit = async (e) => {
     e.preventDefault();
-    const token =localStorage.getItem('token');
-    console.log(instructor);
-    const res = await assignCourse({coursename, instructor}, token);
+    onAdd(coursename, instructor);
     onClose();
 } 
   const token = localStorage.getItem('token');
