@@ -4,11 +4,22 @@ import AddCourse from './AddCourse';
 import Button from './Button';
 import { useState, useEffect } from "react";
 import { getAllCourses } from '../Hooks/getAllCourses';
-
+import { addCourse } from '../Hooks/AddCourse';
+import { assignCourse } from '../Hooks/AssignCourses';
 const AdminCourses = () =>{
   const token = localStorage.getItem('token');
   const [allCourses, setAllCourses] = useState([]);
   const [assignedCourses, setAssignedCourses] = useState([]);
+
+  const assignedCourse = async (coursename, instructor) =>{
+    const res = await assignCourse({coursename, instructor}, token);
+    setAssignedCourses([...assignedCourses, res.data.course]);
+  }
+
+  const addACourse = async (coursename, base64) =>{
+    const res = await addCourse({coursename, base64}, token);
+    setAllCourses([...allCourses, res.data.course]);
+  } 
 
   useEffect(() => {
     const getCourses = async () => {
@@ -39,7 +50,6 @@ const AdminCourses = () =>{
   };
 
   const [coursename, setCourseName] = useState("");
-  //const [instructor, setInstructor] = useState("Ramzi");
   const [image, setImage] = useState("../assets/download.jpeg")
   const [showAssignCourse, setShowAssignCourse] = useState(false);
   const [showAddCourse, setShowAddCourse] = useState(false);
@@ -60,7 +70,6 @@ const AdminCourses = () =>{
       </div>
       <div className = 'allcourses flex'>
         {  allCourses.map((course, index)  => {
-          //console.log(course.name);
           return (
             <Course
             coursename = {course.name}
@@ -98,12 +107,14 @@ const AdminCourses = () =>{
     text = {'Instructor'}
     open = {showAssignCourse}
     coursename = {coursename}
+    onAdd = {assignedCourse}
     onClose = {() => {
       closeAssignPopup();
     }}
     />
     <AddCourse
     open = {showAddCourse}
+    onAdd = {addACourse}
     onClose = {() => {
       closeAddPopup();
     }}
