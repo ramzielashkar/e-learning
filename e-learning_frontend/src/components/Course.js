@@ -3,7 +3,7 @@ import AssignCourses from './AssignCourses';
 
 import { useState, useEffect } from "react";
 
-const Course = ({onClick, text, coursename, image, assigned}) => {
+const Course = ({onClick, text, coursename, image, assigned, instructor}) => {
   return (
     <>
     <div className = "course-card flex column">
@@ -18,7 +18,7 @@ const Course = ({onClick, text, coursename, image, assigned}) => {
         color={'btn-purple'}
         onClick = {onClick}/>
        : 
-       <div className='course-name'>Instructor</div> }
+       <div className='course-name'>{instructor}</div> }
       </div>
     </div>
     </>
