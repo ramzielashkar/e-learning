@@ -11,7 +11,6 @@ const Students = () => {
   useEffect(() => {
     const getStudents = async (token) => {
       const studentsFromServer = await getAllStudents(token);
-      console.log(studentsFromServer.data);
       setStudents(studentsFromServer.data.users);
       console.log(students);
     };
