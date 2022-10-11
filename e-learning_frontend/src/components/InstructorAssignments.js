@@ -2,6 +2,8 @@ import Button from './Button';
 import AssignmentCard from './AssignmentCard';
 import AddAssignment from './AddAssignment'
 import { useState, useEffect } from "react";
+import { getAssignments } from '../Hooks/getInstructorAssignments';
+import { addAssignment } from '../Hooks/AddAssignment';
 
 const InstructorAssignments = () => {
   const showAddPopup = () => {
@@ -11,7 +13,24 @@ const InstructorAssignments = () => {
     setShowAddAssg(false);
   };
 
+  const [assignment, setAssignments] = useState([]);
   const [showAddAssg, setShowAddAssg] = useState(false);
+  const token = localStorage.getItem('token');
+
+  const addAssg = async (coursename, assignment_name, assignment_details) =>{
+    const res = await addAssignment({coursename, assignment_details, assignment_name}, token);
+  }
+
+   //function to fetch get Courses API
+   useEffect(() => {
+    const getInstructorAssg = async () => {
+      const assignmentsFromServer = await getAssignments(token);
+      console.log(assignmentsFromServer.data.assignments);
+      setAssignments(assignmentsFromServer.data.assignments);
+    };
+    getInstructorAssg(token);
+    
+  },[]);
 
   return(
     <>
@@ -27,10 +46,27 @@ const InstructorAssignments = () => {
         />
       </div>
       <div className = 'all-students flex'>
-      <AssignmentCard/>
+      {  assignment.map((course, index)  => {
+            let assignments = course.assignments; 
+              return (
+                <>
+                {course.assignments.map((assg, key)  => {
+                  return(
+                <AssignmentCard
+                course={course.name}
+                name = {assg.assignment_name}
+                details = {assg.assignment_details}
+                />
+                  );
+              })}
+            </>
+              );
+  })}
+        
       </div>
     </section>
     <AddAssignment
+    onAdd = {addAssg}
     open = {showAddAssg}
     onClose = {() => {
       closeAddPopup();
