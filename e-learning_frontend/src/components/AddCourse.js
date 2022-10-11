@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { addCourse } from '../Hooks/AddCourse';
 import { useNavigate } from "react-router-dom";
 
- const AddCourse = ({open, onClose}) => {
+ const AddCourse = ({open, onClose, onAdd}) => {
 
   const navigate = useNavigate();
   //function to submit form
@@ -13,8 +13,7 @@ import { useNavigate } from "react-router-dom";
     console.log('error');
     return;
     } 
-    const token =localStorage.getItem('token');
-    const res = await addCourse({coursename, base64}, token);
+    onAdd(coursename, base64);
     onClose();
 } 
  //function to convert image to base64
