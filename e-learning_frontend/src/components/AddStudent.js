@@ -1,20 +1,24 @@
 import Button from './Button';
 import { useState, useEffect } from "react";
+import { addUser } from '../Hooks/AddUser';
 
 const AddStudent = ({open, onClose, onAdd}) => {
-  const [studentname, setStudentName] = useState("Ramzi");
+  const [name, setStudentName] = useState("Ramzi");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
   e.preventDefault();
   if (!email) {
     console.log('error');
     return;
   }
-  onAdd({studentname, email, password });
+  const token =localStorage.getItem('token');
+  const type = 'student';
+  const res  = await addUser( {name, email, password, type}, token);
   setStudentName("");
   setEmail("");
   setPassword("");
+  onClose();
 };
   if(!open){
     return null;
