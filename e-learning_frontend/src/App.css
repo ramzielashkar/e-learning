@@ -35,6 +35,10 @@ code {
 }
 /* Top Bar Styling Start */
 .top-bar{
+  position: fixed;
+  top:0;
+  right: 0;
+  left: 0;
   background-color: white;
   padding: 0 2rem;
   align-items: center;
@@ -63,9 +67,11 @@ code {
 
 /* Side Bar Styling Start */
 .sidebar{
+  top: 4rem;
   padding: 2rem 2rem;
   background-color: white;
-  height: 100vh;
+  height: 100%;
+  position: fixed;
   width: 250px;
 }
 .icon{
@@ -143,6 +149,7 @@ code {
 
 /* Admin Courses Section Start */
 .section{
+  margin-left: 18rem;
   width: 100%;
   padding: 2rem 4rem;
 }
