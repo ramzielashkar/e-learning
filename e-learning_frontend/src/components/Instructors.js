@@ -2,8 +2,23 @@ import Button from './Button';
 import UserCard from './UserCard';
 import { useState, useEffect } from "react";
 import AddInstructor from './AddInstructor';
+import { getInstructors } from '../Hooks/getInstructors';
 
 const Instructors = () => {
+
+  const token = localStorage.getItem('token');
+  const [instructors, setInstructors] = useState([]);
+  
+  useEffect(() => {
+    const getAllInstructors = async (token) => {
+      const instructorsFromServer = await getInstructors(token);
+      console.log(instructorsFromServer.data);
+      setInstructors(instructorsFromServer.data.users);
+      console.log(instructors);
+    };
+    getAllInstructors(token);
+  }, []);
+
   const showAddPopup = () => {
     setShowAddInstructor(true);
   };
@@ -27,7 +42,14 @@ const Instructors = () => {
         />
       </div>
       <div className = 'all-students flex'>
-      <UserCard/>
+      {  instructors.map((instructor, index)  => {
+        return(
+          <UserCard
+          name={instructor.name}
+          email={instructor.email}
+          />
+        );
+      })}
       </div>
     </section>
     <AddInstructor
