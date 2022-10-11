@@ -21,7 +21,7 @@ const InstructorAssignments = () => {
     const res = await addAssignment({coursename, assignment_details, assignment_name}, token);
   }
 
-   //function to fetch get Courses API
+   //function to fetch get Assignments API
    useEffect(() => {
     const getInstructorAssg = async () => {
       const assignmentsFromServer = await getAssignments(token);
