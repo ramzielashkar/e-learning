@@ -65,4 +65,15 @@ function getAnouncements($course_name){
     'anouncements'=>$anouncements
   ]);
 }
+// function to get Students or Instructors
+function getStudents(){
+  $users = User::where('type', 'student')->get();
+  return
+  response()->json([
+    'users'=>$users,
+  ]);
+ }
+ 
 }
+
+    
