@@ -10,12 +10,14 @@ const Instructors = () => {
   const token = localStorage.getItem('token');
   const [instructors, setInstructors] = useState([]);
   
+  //function to add Instructor
   const addInstructor = async (name, email, password) =>{
     const type = 'instructor';
     const res  = await addUser( {name, email, password, type}, token);
     setInstructors([...instructors, res.data.user]);
   }
   
+  //Getting Instructors on Change
   useEffect(() => {
     const getAllInstructors = async (token) => {
       const instructorsFromServer = await getInstructors(token);
@@ -25,6 +27,7 @@ const Instructors = () => {
     getAllInstructors(token);
   }, []);
 
+  //functions to show and hide Add Instructor Popup
   const showAddPopup = () => {
     setShowAddInstructor(true);
   };

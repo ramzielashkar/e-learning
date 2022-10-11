@@ -28,9 +28,7 @@ function App() {
     const res = await login(user);
     setUser(res.data.user.name);
     localStorage.setItem('token',res.data.user.token);
-    console.log(res.data.user.token);
     const type = res.data.user.type;
-    console.log(type);
     return type;
   
   }

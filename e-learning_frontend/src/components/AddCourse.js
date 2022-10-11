@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
  const AddCourse = ({open, onClose, onAdd}) => {
 
   const navigate = useNavigate();
+  
   //function to submit form
   const onSubmit = async (e) => {
     e.preventDefault();

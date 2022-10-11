@@ -4,7 +4,7 @@ const AddAnnouncement = ({open, text, coursename, onClose}) => {
   if(!open){
     return null;
   }
-
+  
   return(
     <div className='assign-container flex column'>
       <form className='assign-popup flex column'>

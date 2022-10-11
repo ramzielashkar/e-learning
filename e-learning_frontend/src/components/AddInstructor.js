@@ -6,6 +6,7 @@ const AddInstructor = ({open, onClose, onAdd}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //function to submit the form
   const onSubmit = (e) => {
   e.preventDefault();
   if (!email) {

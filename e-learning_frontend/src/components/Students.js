@@ -9,20 +9,23 @@ const Students = () => {
   const token = localStorage.getItem('token');
   const [students, setStudents] = useState([]);
 
+  //function to add a student
   const addStudent = async (name, email, password) =>{
     const type = 'student';
     const res  = await addUser( {name, email, password, type}, token);
-    //console.log(res);
     setStudents([...students, res.data.user]);
   }
+
+  //Rendering Students on Change
   useEffect(() => {
     const getStudents = async (token) => {
       const studentsFromServer = await getAllStudents(token);
       setStudents(studentsFromServer.data.users);
-      //console.log(studentsFromServer);
     };
     getStudents(token);
   }, []);
+
+  //functions to show/hide add student popup
   const showAddPopup = () => {
     setShowAddStudent(true);
   };

@@ -6,12 +6,15 @@ const AddStudent = ({open, onClose, onAdd}) => {
   const [name, setStudentName] = useState("Ramzi");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //function to submit add student form
   const onSubmit = (e) => {
   e.preventDefault();
   if (!email) {
     console.log('error');
     return;
   }
+  //calling a function to fetch add Student API
   onAdd(name, email, password);
   setStudentName("");
   setEmail("");

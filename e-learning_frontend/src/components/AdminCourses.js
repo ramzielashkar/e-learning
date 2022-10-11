@@ -6,21 +6,25 @@ import { useState, useEffect } from "react";
 import { getAllCourses } from '../Hooks/getAllCourses';
 import { addCourse } from '../Hooks/AddCourse';
 import { assignCourse } from '../Hooks/AssignCourses';
+
 const AdminCourses = () =>{
   const token = localStorage.getItem('token');
   const [allCourses, setAllCourses] = useState([]);
   const [assignedCourses, setAssignedCourses] = useState([]);
 
+  //function to assign courses to instructors
   const assignedCourse = async (coursename, instructor) =>{
     const res = await assignCourse({coursename, instructor}, token);
     setAssignedCourses([...assignedCourses, res.data.course]);
   }
 
+  //function to add a course
   const addACourse = async (coursename, base64) =>{
     const res = await addCourse({coursename, base64}, token);
     setAllCourses([...allCourses, res.data.course]);
   } 
 
+  //Rendering Courses on Change
   useEffect(() => {
     const getCourses = async () => {
       const coursesFromServer = await getAllCourses(token);
@@ -35,6 +39,8 @@ const AdminCourses = () =>{
     getAssignedCourses(token);
     
   },[]);
+
+  //functions to show/hide Assign Course Popup 
   const showAssignPopup = (coursename) => {
     setShowAssignCourse(true);
       setCourseName(coursename);
@@ -42,6 +48,8 @@ const AdminCourses = () =>{
   const closeAssignPopup = () => {
     setShowAssignCourse(false);
   };
+
+    //functions to show/hide Add Course Popup 
   const showAddPopup = () => {
     setShowAddCourse(true);
   };
