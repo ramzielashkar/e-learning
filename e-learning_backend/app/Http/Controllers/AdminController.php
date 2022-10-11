@@ -95,6 +95,9 @@ class AdminController extends Controller
          'instructor'=>$request->instructor,
        );
        Course::where('name', '=', $request->coursename)->update($course);
-       return $course;
+       
+       return response()->json([
+        'course'=>$course,
+      ]);
      }
 }
