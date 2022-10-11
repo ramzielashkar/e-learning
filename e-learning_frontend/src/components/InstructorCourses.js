@@ -22,8 +22,8 @@ const InstructorCourses = () =>{
   const [courses, setCourses] = useState([]);
 
   //function to enroll students in a course
-  const enroll = async (name , coursename)=>{
-    const res = await enrollStudent({name, coursename}, token);
+  const enroll = async (student , coursename)=>{
+    const res = await enrollStudent({student, coursename}, token);
     console.log(res);
   }
 
