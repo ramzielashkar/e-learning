@@ -8,13 +8,21 @@ import { getAllCourses } from '../Hooks/getAllCourses';
 const AdminCourses = () =>{
   const token = localStorage.getItem('token');
   const [allCourses, setAllCourses] = useState([]);
+  const [assignedCourses, setAssignedCourses] = useState([]);
+
   useEffect(() => {
     const getCourses = async () => {
       const coursesFromServer = await getAllCourses(token);
       console.log(coursesFromServer.data.courses);
       setAllCourses(coursesFromServer.data.courses);
     };
+    const getAssignedCourses = async () => {
+      const coursesFromServer = await getAllCourses(token, 'assigned');
+      setAssignedCourses(coursesFromServer.data.courses);
+    };
     getCourses(token);
+    getAssignedCourses(token);
+    
   },[]);
   const showAssignPopup = (coursename) => {
     setShowAssignCourse(true);
@@ -31,15 +39,16 @@ const AdminCourses = () =>{
   };
 
   const [coursename, setCourseName] = useState("");
-  const [instructor, setInstructor] = useState("Ramzi");
+  //const [instructor, setInstructor] = useState("Ramzi");
   const [image, setImage] = useState("../assets/download.jpeg")
   const [showAssignCourse, setShowAssignCourse] = useState(false);
   const [showAddCourse, setShowAddCourse] = useState(false);
 
+
   return(
     <>
     <section className = 'section flex column'>
-      <h1 className = 'title'>Courses</h1>
+      <h1 className = 'title'>Unassigned Courses</h1>
       <div className='add-course-btn flex'>
         <Button
         text = {'Add Course'}
@@ -57,6 +66,25 @@ const AdminCourses = () =>{
             coursename = {course.name}
             image = {course.image}
             text = 'Assign'
+            assigned = {false}
+            onClick = {() => {
+              showAssignPopup(course.name);
+            }}
+             />
+          );
+        })}
+
+      </div>
+      <h1 className = 'title'>Assigned Courses</h1>
+      <div className = 'allcourses flex'>
+        {  assignedCourses.map((course, index)  => {
+          return (
+            <Course
+            coursename = {course.name}
+            instructor = {course.instructor}
+            image = {course.image}
+            text = 'Assign'
+            assigned = {true}
             onClick = {() => {
               showAssignPopup(course.name);
             }}
