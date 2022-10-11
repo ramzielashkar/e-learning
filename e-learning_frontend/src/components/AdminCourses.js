@@ -15,7 +15,7 @@ const AdminCourses = () =>{
       setAllCourses(coursesFromServer.data.courses);
     };
     getCourses(token);
-  }, []);
+  },[]);
   const showAssignPopup = (coursename) => {
     setShowAssignCourse(true);
       setCourseName(coursename);
