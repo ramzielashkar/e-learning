@@ -6,15 +6,13 @@ const AddStudent = ({open, onClose, onAdd}) => {
   const [name, setStudentName] = useState("Ramzi");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
   e.preventDefault();
   if (!email) {
     console.log('error');
     return;
   }
-  const token =localStorage.getItem('token');
-  const type = 'student';
-  const res  = await addUser( {name, email, password, type}, token);
+  onAdd(name, email, password);
   setStudentName("");
   setEmail("");
   setPassword("");
