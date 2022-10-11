@@ -19,6 +19,7 @@ const AssignCourses = ({open, text, coursename, onClose, onAdd}) => {
     const getAllInstructors = async (token) => {
       const instructorsFromServer = await getInstructors(token);
       setInstructors(instructorsFromServer.data.users);
+      setInstructor(instructorsFromServer.data.users['0'].name);
     };
     getAllInstructors(token);
   }, []);
