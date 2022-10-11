@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { baseUrl } from './baseUrl';
 export const getAllCourses = async (token, assigned='') => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/v0.1/getCourses/${assigned}`,{
+    const res = await axios.get(`${baseUrl}/getCourses/${assigned}`,{
         headers: {
           "Content-type": "application/json",
           'Authorization' : "Bearer" + token

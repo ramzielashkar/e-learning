@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { baseUrl } from './baseUrl';
 export const addAssignment = async (data, token) => {
-    const res = await axios.post("http://127.0.0.1:8000/api/v0.1/addAssignment", data,{
+    const res = await axios.post(`${baseUrl}/addAssignment`, data,{
         headers: {
           "Content-type": "application/json",
           'Authorization' : "Bearer" + token

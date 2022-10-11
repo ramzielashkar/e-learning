@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { baseUrl } from './baseUrl';
 export const getAnnounecements = async (token, coursename) => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/v0.1/getAnouncements/${coursename}`,{
+    const res = await axios.get(`${baseUrl}/getAnouncements/${coursename}`,{
         headers: {
           "Content-type": "application/json",
           'Authorization' : "Bearer" + token

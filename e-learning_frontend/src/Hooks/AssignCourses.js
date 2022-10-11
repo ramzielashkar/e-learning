@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { baseUrl } from './baseUrl';
 export const assignCourse = async (data, token) => {
-    const res = await axios.post("http://127.0.0.1:8000/api/v0.1/assignCourse", data,{
+    const res = await axios.post(`${baseUrl}/assignCourse`, data,{
         headers: {
           "Content-type": "application/json",
           'Authorization' : "Bearer" + token
