@@ -19,6 +19,7 @@ Route::group(["prefix"=> "v0.1"], function(){
 
   });
   Route::group(["middleware" => "role.instructor"], function(){
+    Route::get("/getStudent", [InstructorController::class, "getStudents"])->name("get-users");
     Route::post("/enrollStudent", [InstructorController::class, "enrollStudent"])->name("enroll-student");
     Route::post("/addAssignment", [InstructorController::class, "addAssignment"])->name("add-assignment");
     Route::post("/addAnouncement", [InstructorController::class, "addAnouncement"])->name("add-anouncement");
