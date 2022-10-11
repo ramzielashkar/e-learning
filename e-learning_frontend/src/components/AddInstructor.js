@@ -2,25 +2,23 @@ import Button from './Button';
 import { useState, useEffect } from "react";
 
 const AddInstructor = ({open, onClose, onAdd}) => {
-  const [instructorName, setInstructorName] = useState("Ramzi");
+  const [instructorName, setInstructorName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [img, setImg] = useState();
+
   const onSubmit = (e) => {
   e.preventDefault();
   if (!email) {
     console.log('error');
     return;
   }
-  onAdd({instructorName, email, password });
+  onAdd(instructorName, email, password);
   setInstructorName("");
   setEmail("");
   setPassword("");
+  onClose();
 };
-  const onImageChange = (e) => {
-    const [file] = e.target.files;
-    setImg(URL.createObjectURL(file));
-  };
+
   if(!open){
     return null;
   }
@@ -29,10 +27,8 @@ const AddInstructor = ({open, onClose, onAdd}) => {
     <div className='assign-container flex column'>
       <div className='assign-popup flex column'>
           <div>
-          <label className='select-img' for = 'image'>Select Image</label>
-          <input id='image' type="file" hidden onChange={onImageChange} />
           <div className='course-image'>
-            <img src={img} alt="" width='100%' height="100%" />
+            <img src={require('../assets/default.png')} alt="" width='100%' height="100%" />
           </div>
         </div>
 
