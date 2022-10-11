@@ -37,6 +37,7 @@ function addAssignment(Request $request){
   );
   $course = Course::where('name', '=', $course_name)
   ->push('assignments', $assignment);
+  
   return response()->json([
     'course'=>$course
   ]);
@@ -51,16 +52,18 @@ function addAnouncement(Request $request){
 }
 
 // function to get assignments
-function getAssignments($course_name){
-  $assignments = Course::select('assignments')->where('name', '=', $course_name)->get();
+function getAssignments(){
+  $instructor = Auth::user();
+  $assignments = Course::select('assignments', 'name')->where('instructor', '=', $instructor->name)->get();
   return response()->json([
     'assignments'=>$assignments
   ]);
 }
 
 // function to get anouncements
-function getAnouncements($course_name){
-  $anouncements = Course::select('anouncements')->where('name', '=', $course_name)->get();
+function getAnouncements(){
+  $instructor = Auth::user();
+  $anouncements = Course::select('anouncements','name')->where('instructor', '=', $instructor->name)->get();
   return response()->json([
     'anouncements'=>$anouncements
   ]);
@@ -73,7 +76,7 @@ function getStudents(){
     'users'=>$users,
   ]);
  }
- 
+
 }
 
     

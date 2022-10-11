@@ -17,6 +17,7 @@ class Course extends Model
         'name',
         "assigned",
         "assignments",
+        "image",
     ];
 
 

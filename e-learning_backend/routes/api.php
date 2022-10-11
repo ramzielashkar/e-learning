@@ -24,8 +24,8 @@ Route::group(["prefix"=> "v0.1"], function(){
     Route::post("/addAssignment", [InstructorController::class, "addAssignment"])->name("add-assignment");
     Route::post("/addAnouncement", [InstructorController::class, "addAnouncement"])->name("add-anouncement");
     Route::get("/getInstructorCourses", [InstructorController::class, "getCourses"])->name("get-courses");
-    Route::get("/getAssignments/{course_name}", [InstructorController::class, "getAssignments"])->name("get-assignments");
-    Route::get("/getAnouncements/{course_name}", [InstructorController::class, "getAnouncements"])->name("get-anouncements");
+    Route::get("/getAssignments/", [InstructorController::class, "getAssignments"])->name("get-assignments");
+    Route::get("/getAnouncements/", [InstructorController::class, "getAnouncements"])->name("get-anouncements");
 
     });
     Route::group(["middleware" => "role.student"], function(){
