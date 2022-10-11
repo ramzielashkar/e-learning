@@ -1,18 +1,18 @@
 
-const AssignmentCard = () => {
+const AssignmentCard = ({name, course, details}) => {
   return(
     <div className='assignment-card flex column'>
       <div className='assignment-info'>
         <div className='assignment'>Assignment Name</div>
-        <div> Assignment 1</div>
+        <div>{name}</div>
       </div>
       <div className='assignment-info '>
         <div className='assignment'>Desription</div>
-        <div>Create a web app</div>
+        <div>{details}</div>
       </div>
       <div className='assignment-info '>
         <div className='assignment'>Course</div>
-        <div> Web Programming</div>
+        <div> {course}</div>
       </div>
     </div>
   );
