@@ -1,14 +1,14 @@
 
-const AnnouncementCard = () => {
+const AnnouncementCard = ({course, details}) => {
   return(
     <div className='assignment-card flex column'>
       <div className='assignment-info '>
         <div className='assignment'>Announcement</div>
-        <div>Create a web app</div>
+        <div>{details}</div>
       </div>
       <div className='assignment-info '>
         <div className='assignment'>Course</div>
-        <div> Web Programming</div>
+        <div>{course}</div>
       </div>
     </div>
   );
