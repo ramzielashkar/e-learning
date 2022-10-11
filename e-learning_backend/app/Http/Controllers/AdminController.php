@@ -52,15 +52,15 @@ class AdminController extends Controller
 
      // function to add Courses
      function addCourse(Request $request){
-      $image = $request->image;
-      $name = $request->name;
+      $image = $request->base64;
+      $name = $request->coursename;
       $base64Image = explode(";base64,", $image);
       $explodeImage = explode("image/", $base64Image[0]);
       $imageType = $explodeImage[1];
       $image_base64 = base64_decode($base64Image[1]);
       $imageName = $name.'.'.'png';
       file_put_contents(public_path().'/'.$imageName, $image_base64);
-
+      //$imagetoDb = 'http://127.0.0.1:8000/'.$imageName;
       $course = Course::create([
         'name'=>$name,
         'image'=>$imageName,
@@ -72,11 +72,18 @@ class AdminController extends Controller
      }
 
      // function to get all courses
-     function getCourses(){
-       $courses = Course::get();
+     function getCourses($assigned=null){
+      if(!$assigned){
+       $courses = Course::where('assigned', 'false')->get();
        return response()->json([
          'courses'=>$courses,
        ]);
+      }
+      $courses = Course::where('assigned', 'true')->get();
+       return response()->json([
+         'courses'=>$courses,
+       ]);
+
      }
 
      // function to assign courses to instructors
