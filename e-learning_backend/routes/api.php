@@ -14,12 +14,11 @@ Route::group(["prefix"=> "v0.1"], function(){
       Route::post("/addUser", [AdminController::class, "addUser"])->name("register-user");
       Route::post("/addCourse", [AdminController::class, "addCourse"])->name("add-course");
       Route::get("/getUsers/{type}", [AdminController::class, "getUsers"])->name("get-users");
-      Route::get("/getCourses", [AdminController::class, "getCourses"])->name("get-courses");
+      Route::get("/getCourses/{assigned?}", [AdminController::class, "getCourses"])->name("get-courses");
       Route::post("/assignCourse", [AdminController::class, "assignCourse"])->name("assign-course");
 
   });
   Route::group(["middleware" => "role.instructor"], function(){
-    Route::get("/getUsers/{type}", [AdminController::class, "getUsers"])->name("get-users");
     Route::post("/enrollStudent", [InstructorController::class, "enrollStudent"])->name("enroll-student");
     Route::post("/addAssignment", [InstructorController::class, "addAssignment"])->name("add-assignment");
     Route::post("/addAnouncement", [InstructorController::class, "addAnouncement"])->name("add-anouncement");
