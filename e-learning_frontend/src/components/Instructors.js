@@ -3,18 +3,24 @@ import UserCard from './UserCard';
 import { useState, useEffect } from "react";
 import AddInstructor from './AddInstructor';
 import { getInstructors } from '../Hooks/getInstructors';
+import { addUser } from '../Hooks/AddUser';
 
 const Instructors = () => {
 
   const token = localStorage.getItem('token');
   const [instructors, setInstructors] = useState([]);
   
+  const addInstructor = async (name, email, password) =>{
+    const type = 'instructor';
+    const res  = await addUser( {name, email, password, type}, token);
+    setInstructors([...instructors, res.data.user]);
+  }
+  
   useEffect(() => {
     const getAllInstructors = async (token) => {
       const instructorsFromServer = await getInstructors(token);
       console.log(instructorsFromServer.data);
       setInstructors(instructorsFromServer.data.users);
-      console.log(instructors);
     };
     getAllInstructors(token);
   }, []);
@@ -54,6 +60,7 @@ const Instructors = () => {
     </section>
     <AddInstructor
     open = {showAddInstructor}
+    onAdd = {addInstructor}
     onClose = {() => {
       closeAddPopup();
     }}
