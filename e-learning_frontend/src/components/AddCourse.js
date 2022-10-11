@@ -1,11 +1,44 @@
 import Button from './Button';
 import { useState, useEffect } from "react";
+import { addCourse } from '../Hooks/AddCourse';
+import { useNavigate } from "react-router-dom";
 
-const AddCourse = ({open, onClose}) => {
-  const [img, setImg] = useState();
+ const AddCourse = ({open, onClose}) => {
+
+  const navigate = useNavigate();
+  //function to submit form
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!coursename) {
+    console.log('error');
+    return;
+    } 
+    const token =localStorage.getItem('token');
+    const res = await addCourse({coursename, base64}, token);
+    onClose();
+} 
+ //function to convert image to base64
+  const getBase64 = (file, callBack) =>{
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        callBack(reader.result)
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+  }
+}
+  const [img, setImg] = useState('');
+  const [base64, setBase64]= useState('');
+  const [coursename, setCourseName] = useState('');
+
+  // get chosen image
   const onImageChange = (e) => {
     const [file] = e.target.files;
     setImg(URL.createObjectURL(file));
+    getBase64(file, (result) => {
+      setBase64(result);
+    });
   };
   if(!open){
     return null;
@@ -13,7 +46,7 @@ const AddCourse = ({open, onClose}) => {
 
   return(
     <div className='assign-container flex column'>
-      <div className='assign-popup flex column'>
+      <form className='assign-popup flex column' onSubmit={onSubmit}>
           <div>
           <label className='select-img' for = 'image'>Select Image</label>
           <input id='image' type="file" hidden onChange={onImageChange} />
@@ -23,19 +56,17 @@ const AddCourse = ({open, onClose}) => {
         </div>
         <div className='course-info flex column'>
           <label>Course Name</label>
-          <input type='text' placeholder='Enter Course Name'></input>
+          <input type='text' placeholder='Enter Course Name' onChange={(e) => setCourseName(e.target.value)} required></input>
         </div>
         <div className='buttons flex'>
         <Button
         text= {'Close'}
         color={'btn-assign'}
         onClick = {onClose}/>
-        <Button
-        text= {'Add'}
-        color={'btn-assign'}
-        onClick = {onClose}/>
+        <input type={"submit"} value="Add" className="btn btn-assign"/>
+
         </div>
-      </div>
+      </form>
     </div>
   );
 };
